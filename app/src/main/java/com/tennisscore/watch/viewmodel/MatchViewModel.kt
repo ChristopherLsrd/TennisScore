@@ -2,6 +2,8 @@ package com.tennisscore.watch.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.tennisscore.watch.data.AppCompatLocaleApplier
+import com.tennisscore.watch.data.LocaleApplier
 import com.tennisscore.watch.data.MatchRepository
 import com.tennisscore.watch.engine.ScoreEngine
 import com.tennisscore.watch.model.AppLanguage
@@ -22,7 +24,8 @@ private data class SettingsDraft(val rules: MatchRules, val language: AppLanguag
 
 class MatchViewModel(
     private val repository: MatchRepository,
-    private val saveDebounceMs: Long = 300L
+    private val saveDebounceMs: Long = 300L,
+    private val localeApplier: LocaleApplier = AppCompatLocaleApplier
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(AppState())
@@ -34,11 +37,13 @@ class MatchViewModel(
     init {
         viewModelScope.launch {
             val restored = repository.load()
-            _uiState.value = if (restored.screen == Screen.LIVE && !restored.match.matchOver) {
+            val resolved = if (restored.screen == Screen.LIVE && !restored.match.matchOver) {
                 restored
             } else {
                 restored.copy(screen = Screen.SETUP)
             }
+            _uiState.value = resolved
+            localeApplier.apply(resolved.language)
         }
     }
 
@@ -75,7 +80,10 @@ class MatchViewModel(
         }
     }
 
-    fun saveSettings() = update { it.copy(screen = Screen.SETUP) }
+    fun saveSettings() {
+        update { it.copy(screen = Screen.SETUP) }
+        localeApplier.apply(_uiState.value.language)
+    }
 
     fun incSets(delta: Int) = update {
         it.copy(rules = it.rules.copy(setsToWin = (it.rules.setsToWin + delta).coerceIn(1, 3)))
@@ -88,7 +96,9 @@ class MatchViewModel(
     fun setTiebreakRule(rule: TiebreakRule) = update { it.copy(rules = it.rules.copy(tiebreakRule = rule)) }
     fun setLanguage(language: AppLanguage) = update { it.copy(language = language) }
 
-    fun startMatch() = update { it.copy(screen = Screen.LIVE) }
+    fun startMatch() = update {
+        it.copy(screen = Screen.LIVE, match = if (it.match.matchOver) it.match.reset() else it.match)
+    }
     fun newMatch() = update { it.copy(screen = Screen.SETUP, match = it.match.reset()) }
     fun swapServe() = update {
         it.copy(match = it.match.copy(server = if (it.match.server == Player.A) Player.B else Player.A))

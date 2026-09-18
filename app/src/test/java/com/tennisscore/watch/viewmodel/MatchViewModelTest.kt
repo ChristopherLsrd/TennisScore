@@ -1,5 +1,6 @@
 package com.tennisscore.watch.viewmodel
 
+import com.tennisscore.watch.data.LocaleApplier
 import com.tennisscore.watch.data.MatchRepository
 import com.tennisscore.watch.model.AppLanguage
 import com.tennisscore.watch.model.AppState
@@ -26,6 +27,13 @@ class FakeMatchRepository(private var stored: AppState = AppState()) : MatchRepo
     override suspend fun save(state: AppState) {
         stored = state
         saveCount++
+    }
+}
+
+class FakeLocaleApplier : LocaleApplier {
+    var lastApplied: AppLanguage? = null
+    override fun apply(language: AppLanguage) {
+        lastApplied = language
     }
 }
 
@@ -137,5 +145,35 @@ class MatchViewModelTest {
         assertEquals(9, vm.uiState.value.rules.gamesPerSet)
         repeat(10) { vm.incGames(-1) }
         assertEquals(3, vm.uiState.value.rules.gamesPerSet)
+    }
+
+    @Test
+    fun `saveSettings applies the chosen language`() = runTest {
+        val localeApplier = FakeLocaleApplier()
+        val vm = MatchViewModel(FakeMatchRepository(), saveDebounceMs = 0, localeApplier = localeApplier)
+        vm.openSettings()
+        vm.setLanguage(AppLanguage.EN)
+        vm.saveSettings()
+        assertEquals(AppLanguage.EN, localeApplier.lastApplied)
+    }
+
+    @Test
+    fun `restoring a saved state applies its persisted language on startup`() = runTest {
+        val saved = AppState(language = AppLanguage.EN)
+        val localeApplier = FakeLocaleApplier()
+        val vm = MatchViewModel(FakeMatchRepository(saved), saveDebounceMs = 0, localeApplier = localeApplier)
+        assertEquals(AppLanguage.EN, localeApplier.lastApplied)
+    }
+
+    @Test
+    fun `startMatch resets a finished match instead of reopening the complete overlay`() = runTest {
+        val saved = AppState(
+            match = com.tennisscore.watch.model.MatchState(matchOver = true, winner = Player.A, setsA = 2)
+        )
+        val vm = MatchViewModel(FakeMatchRepository(saved), saveDebounceMs = 0)
+        vm.startMatch()
+        assertEquals(Screen.LIVE, vm.uiState.value.screen)
+        assertEquals(false, vm.uiState.value.match.matchOver)
+        assertEquals(0, vm.uiState.value.match.setsA)
     }
 }
