@@ -1,0 +1,17 @@
+# Claude Code local config/session data
+.claude/
+
+# Local planning docs / specs (not tracked in the repo)
+docs/
+
+# Android / Gradle build artifacts and machine-specific config
+*.iml
+.gradle/
+/local.properties
+/.idea/
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+app/build/
