@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">Tennis Watch</string>
+
+    <string name="new_match">NOUVEAU MATCH</string>
+    <string name="player1">Joueur 1</string>
+    <string name="player2">Joueur 2</string>
+    <string name="serving_first">SERT EN PREMIER</string>
+    <string name="start_match">Commencer le match</string>
+
+    <string name="settings_title">PARAMÈTRES</string>
+    <string name="sets_to_win">SETS GAGNANTS</string>
+    <string name="games_per_set">JEUX PAR SET</string>
+    <string name="set_tiebreak">DÉPARTAGE DE SET</string>
+    <string name="advantage">2 JEUX D’ÉCART</string>
+    <string name="tiebreak_at">TIE-BREAK À 6-6</string>
+    <string name="super_tiebreak">SUPER TIE-BREAK</string>
+    <string name="language">LANGUE</string>
+    <string name="cancel">Annuler</string>
+    <string name="save">Enregistrer</string>
+
+    <string name="games_label">JEUX</string>
+    <string name="tiebreak_live">TIE-BREAK</string>
+    <string name="super_tiebreak_live">SUPER TIE-BREAK</string>
+    <string name="serve_right">SERT À DROITE</string>
+    <string name="serve_left">SERT À GAUCHE</string>
+    <string name="match_complete">MATCH TERMINÉ</string>
+    <string name="wins">GAGNE</string>
+    <string name="new_match_btn">Nouveau match</string>
+    <string name="sets_unit">sets</string>
+    <string name="games_unit">jeux</string>
+</resources>
