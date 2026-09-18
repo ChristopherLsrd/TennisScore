@@ -116,7 +116,7 @@ private fun MidLine(state: AppState) {
         match.inTiebreak -> stringResource(R.string.tiebreak_live)
         else -> "${stringResource(R.string.games_label)} ${match.gamesA} – ${match.gamesB}"
     }
-    val side = if ((match.pointsA + match.pointsB) % 2 == 0) {
+    val side = if ((if (match.isSuperSet || match.inTiebreak) match.tbA + match.tbB else match.pointsA + match.pointsB) % 2 == 0) {
         stringResource(R.string.serve_right)
     } else {
         stringResource(R.string.serve_left)
