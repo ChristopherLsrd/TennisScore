@@ -103,4 +103,26 @@ object ScoreEngine {
             history = state.history + snapshot
         )
     }
+
+    fun undo(state: MatchState): MatchState {
+        if (state.history.isEmpty()) return state
+        val last = state.history.last()
+        return state.copy(
+            pointsA = last.pointsA,
+            pointsB = last.pointsB,
+            gamesA = last.gamesA,
+            gamesB = last.gamesB,
+            setsA = last.setsA,
+            setsB = last.setsB,
+            completedSets = last.completedSets,
+            server = last.server,
+            matchOver = last.matchOver,
+            winner = last.winner,
+            tbA = last.tbA,
+            tbB = last.tbB,
+            inTiebreak = last.inTiebreak,
+            isSuperSet = last.isSuperSet,
+            history = state.history.dropLast(1)
+        )
+    }
 }
