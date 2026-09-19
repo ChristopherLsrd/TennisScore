@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TennisScore logo: three rising bars and a ball, drawn on the design's 320-unit circle. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:translateX="18"
+        android:translateY="18"
+        android:scaleX="0.225"
+        android:scaleY="0.225">
+        <path android:fillColor="#8CEEF7F8" android:pathData="M101,165 H107 A14,14 0 0,1 121,179 V221 A14,14 0 0,1 107,235 H101 A14,14 0 0,1 87,221 V179 A14,14 0 0,1 101,165 Z" />
+        <path android:fillColor="#CCEEF7F8" android:pathData="M157,123 H163 A14,14 0 0,1 177,137 V221 A14,14 0 0,1 163,235 H157 A14,14 0 0,1 143,221 V137 A14,14 0 0,1 157,123 Z" />
+        <path android:fillColor="#F5F9FA" android:pathData="M213,85 H219 A14,14 0 0,1 233,99 V221 A14,14 0 0,1 219,235 H213 A14,14 0 0,1 199,221 V99 A14,14 0 0,1 213,85 Z" />
+        <path android:fillColor="#C3EA43" android:pathData="M212,79 A15,15 0 1,1 242,79 A15,15 0 1,1 212,79 Z" />
+    </group>
+</vector>
