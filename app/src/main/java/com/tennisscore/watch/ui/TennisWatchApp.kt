@@ -1,8 +1,14 @@
 package com.tennisscore.watch.ui
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import com.tennisscore.watch.model.AppState
 import com.tennisscore.watch.model.Screen
 import com.tennisscore.watch.viewmodel.MatchViewModel
 
@@ -10,6 +16,13 @@ import com.tennisscore.watch.viewmodel.MatchViewModel
 fun TennisWatchApp(viewModel: MatchViewModel) {
     val state by viewModel.uiState.collectAsState()
 
+    Box(modifier = Modifier.fillMaxSize().background(Color.Black)) {
+        ScreenSwitch(state = state, viewModel = viewModel)
+    }
+}
+
+@Composable
+private fun ScreenSwitch(state: AppState, viewModel: MatchViewModel) {
     when (state.screen) {
         Screen.SETUP -> SetupScreen(
             state = state,

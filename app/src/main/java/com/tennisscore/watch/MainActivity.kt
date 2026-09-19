@@ -1,13 +1,14 @@
 package com.tennisscore.watch
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.tennisscore.watch.ui.TennisWatchApp
 import com.tennisscore.watch.viewmodel.MatchViewModelFactory
 
-class MainActivity : ComponentActivity() {
+// AppCompatActivity (not ComponentActivity) so AppCompatDelegate.setApplicationLocales can apply the in-app language.
+class MainActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<com.tennisscore.watch.viewmodel.MatchViewModel> {
         MatchViewModelFactory(applicationContext)

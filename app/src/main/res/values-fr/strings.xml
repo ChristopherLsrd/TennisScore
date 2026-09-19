@@ -12,6 +12,9 @@
     <string name="games_per_set">JEUX PAR SET</string>
     <string name="set_tiebreak">DÉPARTAGE DE SET</string>
     <string name="advantage">2 JEUX D’ÉCART</string>
+    <string name="rule_chip_advantage">ÉCART DE 2</string>
+    <string name="rule_chip_tiebreak">TIE-BREAK</string>
+    <string name="rule_chip_super_tiebreak">SUPER TB</string>
     <string name="tiebreak_at">TIE-BREAK À 6-6</string>
     <string name="super_tiebreak">SUPER TIE-BREAK</string>
     <string name="language">LANGUE</string>
@@ -25,6 +28,9 @@
     <string name="serve_left">SERT À GAUCHE</string>
     <string name="match_complete">MATCH TERMINÉ</string>
     <string name="wins">GAGNE</string>
+    <string name="leave_match_title">QUITTER LE MATCH ?</string>
+    <string name="leave_match_message">Le score en cours sera perdu.</string>
+    <string name="leave">Quitter</string>
     <string name="new_match_btn">Nouveau match</string>
     <string name="sets_unit">sets</string>
     <string name="games_unit">jeux</string>

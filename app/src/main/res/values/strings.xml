@@ -12,6 +12,9 @@
     <string name="games_per_set">GAMES PER SET</string>
     <string name="set_tiebreak">SET TIEBREAK</string>
     <string name="advantage">2-GAME LEAD</string>
+    <string name="rule_chip_advantage">2-GAME LEAD</string>
+    <string name="rule_chip_tiebreak">TIEBREAK</string>
+    <string name="rule_chip_super_tiebreak">SUPER TB</string>
     <string name="tiebreak_at">TIEBREAK AT 6-6</string>
     <string name="super_tiebreak">SUPER TIEBREAK</string>
     <string name="language">LANGUAGE</string>
@@ -26,6 +29,9 @@
     <string name="match_complete">MATCH COMPLETE</string>
     <string name="wins">WINS</string>
     <string name="new_match_btn">New match</string>
+    <string name="leave_match_title">LEAVE MATCH?</string>
+    <string name="leave_match_message">The current score will be lost.</string>
+    <string name="leave">Leave</string>
     <string name="sets_unit">sets</string>
     <string name="games_unit">games</string>
 </resources>
